@@ -8,7 +8,7 @@ const testRouter = express.Router();
  *  /test:
  *   get:
  *     tags: [test]
- *      summary: 테스트
+ *     summary: 테스트
  *     responses:
  *       "1000":
  *         description: GET 테스트 API 성공
