@@ -19,7 +19,7 @@ const swaggerDefinition = {
 };
 const options = {
   swaggerDefinition: swaggerDefinition,
-  apis: ["./src/app/TestInit/*.js"] //Swagger 파일 연동
+  apis: ["./src/app/TestInit/*.js", "./src/app/Auth/*.js", "./src/app/User/*.js", "./src/app/Item/*.js"] //Swagger 파일 연동
 };
 const specs = swaggereJsdoc(options);
 
