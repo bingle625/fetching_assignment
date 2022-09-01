@@ -18,16 +18,16 @@ export const postLogin = async (req, res) => {
   console.log(req.body);
   //id validation
   if (!id) {
-    return res.send(errResponse(baseResponse.FAILURE));
+    return res.send(errResponse(baseResponse.SIGNIN_ID_EMPTY));
   } else if (id.length > 255) {
-    return res.send(errResponse(baseResponse.FAILURE));
+    return res.send(errResponse(baseResponse.SIGNIN_ID_LENGTH));
   }
 
   //pw validation
   if (!pw) {
-    return res.send(errResponse(baseResponse.FAILURE));
+    return res.send(errResponse(baseResponse.SIGNIN_PW_EMPTY));
   } else if (pw.length > 30) {
-    return res.send(errResponse(baseResponse.FAILURE));
+    return res.send(errResponse(baseResponse.SIGNIN_PW_LENGTH));
   }
   // } else if (!regexPwd.test(pw)) {
   //   return res.send(errResponse(baseResponse.SIGNIN_PASSWORD_WRONG));

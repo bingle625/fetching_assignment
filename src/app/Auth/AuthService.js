@@ -14,7 +14,7 @@ export const postSignIn = async function (id, pw) {
     const idRows = await authProvider.idCheck(id);
     console.log(idRows);
     if (idRows.length < 1) {
-      return errResponse(baseResponse.FAILURE);
+      return errResponse(baseResponse.SIGNIN_ID_WRONG);
     }
 
     const hashedPassword = await crypto.createHash("sha512").update(pw).digest("hex");
@@ -22,16 +22,16 @@ export const postSignIn = async function (id, pw) {
     const passwordRows = await authProvider.passwordCheck(id);
 
     if (passwordRows[0].pw !== hashedPassword) {
-      return errResponse(baseResponse.FAILURE);
+      return errResponse(baseResponse.SIGNIN_PW_WRONG);
     }
 
     //todo: 계정 상태 확인
     // 계정 상태 확인
     const userInfoRows = await authProvider.statusCheck(id);
     if (userInfoRows[0].status === "INACTIVE") {
-      return errResponse(baseResponse.FAILURE);
+      return errResponse(baseResponse.USER_STATUS_INACTIVE);
     } else if (userInfoRows[0].status === "DELETED") {
-      return errResponse(baseResponse.FAILURE);
+      return errResponse(baseResponse.USER_STATUS_DELETED);
     }
 
     //todo jwt 토큰 만들기

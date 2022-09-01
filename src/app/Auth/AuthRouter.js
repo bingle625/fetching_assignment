@@ -33,16 +33,23 @@ const authRouter = express.Router();
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
+ *       "2007":
  *         description: id를 입력해주세요.
- *       "2002":
+ *       "2009":
  *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
+ *       "2008":
  *         description: 비밀번호를 입력 해주세요.
- *       "2005":
+ *       "2010":
  *         description: 비밀번호는 30자리 미만으로 입력해주세요.
  *       "3001":
- *         description: 이미 존재하는 id입니다.
+ *         description: 틀린 id입니다.
+ *       "3002":
+ *         description: 틀린 비밀번호입니다.
+ *       "3003":
+ *         description: 비활성화된 user입니다.
+ *       "3004":
+ *         description: 삭제된 user입니다.
+ *
  *       "4000":
  *         description: 데이터 베이스 에러
  *
