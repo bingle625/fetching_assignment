@@ -23,12 +23,12 @@ export const createItem = async (req, res) => {
   const { name, description, brand, price, size, color } = req.body;
 
   //todo: 모든 파라미터 (etc 제외) 다 있는 지 확인
-  if (!name) return res.send(errResponse(baseResponse.FAILURE));
-  if (!description) return res.send(errResponse(baseResponse.FAILURE));
-  if (!brand) return res.send(errResponse(baseResponse.FAILURE));
-  if (!price) return res.send(errResponse(baseResponse.FAILURE));
-  if (!size) return res.send(errResponse(baseResponse.FAILURE));
-  if (!color) return res.send(errResponse(baseResponse.FAILURE));
+  if (!name) return res.send(errResponse(baseResponse.ITEM_NAME_EMPTY));
+  if (!description) return res.send(errResponse(baseResponse.ITEM_DESCRIPTION_EMPTY));
+  if (!brand) return res.send(errResponse(baseResponse.ITEM_BRAND_EMPTY));
+  if (!price) return res.send(errResponse(baseResponse.ITEM_PRICE_EMPTY));
+  if (!size) return res.send(errResponse(baseResponse.ITEM_SIZE_EMPTY));
+  if (!color) return res.send(errResponse(baseResponse.ITEM_COLOR_EMPTY));
 
   const createItemResult = await itemServcie.createItem(name, description, brand, price, size, color);
   return res.send(createItemResult);
@@ -40,8 +40,6 @@ export const createItem = async (req, res) => {
  * [GET] app/item
  */
 export const retrieveItems = async (req, res) => {
-  console.log("2");
-
   const retrieveItemsResult = await itemProvider.retrieveItemList();
   return res.send(retrieveItemsResult);
 };
@@ -52,9 +50,8 @@ export const retrieveItems = async (req, res) => {
  * [GET] app/item/:id
  */
 export const retrieveItemDetail = async (req, res) => {
-  console.log("3");
-
   const itemIdx = req.params.id;
+  if (!itemIdx) return res.send(errResponse(baseResponse.ITEM_INDEX_EMPTY));
   const retrieveItemDetailResult = await itemProvider.retrieveItemDetail(itemIdx);
   return res.send(retrieveItemDetailResult);
 };
@@ -65,10 +62,9 @@ export const retrieveItemDetail = async (req, res) => {
  * [PATCH] app/item/:id
  */
 export const patchItem = async (req, res) => {
-  console.log("4");
-
   const itemIdx = req.params.id;
   const { name, description, brand, price, size, color } = req.body;
+  if (!itemIdx) return res.send(errResponse(baseResponse.ITEM_INDEX_EMPTY));
   if (!name) return res.send(errResponse(baseResponse.FAILURE));
   if (!description) return res.send(errResponse(baseResponse.FAILURE));
   if (!brand) return res.send(errResponse(baseResponse.FAILURE));
@@ -85,9 +81,8 @@ export const patchItem = async (req, res) => {
  * [PATCH] app/item/status/:id
  */
 export const deleteItem = async (req, res) => {
-  console.log("5");
-
   const itemIdx = req.params.id;
+  if (!itemIdx) return res.send(errResponse(baseResponse.ITEM_INDEX_EMPTY));
   const deleteItemResult = await itemServcie.deleteItem(itemIdx);
   return res.send(deleteItemResult);
 };
@@ -99,12 +94,12 @@ export const deleteItem = async (req, res) => {
  */
 
 export const retrieveItemsByFilter = async (req, res) => {
-  console.log("HIHIHIHIHIHIHI");
   const color = req.query.color;
   const brand = req.query.brand;
   const size = req.query.size;
-  console.log(color, brand, size);
-
+  if (!color) return res.send(errResponse(baseResponse.ITEM_COLOR_EMPTY));
+  if (!brand) return res.send(errResponse(baseResponse.ITEM_BRAND_EMPTY));
+  if (!size) return res.send(errResponse(baseResponse.ITEM_SIZE_EMPTY));
   const retrieveItemsResult = await itemProvider.retrieveItemsByFilter(color, brand, size);
   return res.send(retrieveItemsResult);
 };

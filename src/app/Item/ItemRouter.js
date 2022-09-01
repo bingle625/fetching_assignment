@@ -15,18 +15,6 @@ const itemRouter = express.Router();
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
- *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
  *       "4000":
  *         description: 데이터 베이스 에러
  *
@@ -77,18 +65,18 @@ const itemRouter = express.Router();
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
- *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
+ *       "2011":
+ *         description: 상품의 이름을 입력해주세요.
+ *       "2012":
+ *         description: 상품의 상세설명을 입력해주세요.
+ *       "2013":
+ *         description: 상품의 브랜드를 입력해주세요.
+ *       "2014":
+ *         description: 상품의 가격을 입력해주세요.
+ *       "2015":
+ *         description: 상품의 사이즈를 입력해주세요.
+ *       "2016":
+ *         description: 상품의 크기를 입력해주세요.
  *       "4000":
  *         description: 데이터 베이스 에러
  *
@@ -129,16 +117,12 @@ itemRouter.get("/", itemController.retrieveItems).post("/", itemController.creat
  *         description: API 성공
  *       "2001":
  *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
+ *       "2013":
+ *         description: 상품의 브랜드를 입력해주세요.
+ *       "2014":
+ *         description: 상품의 가격을 입력해주세요.
+ *       "2015":
+ *         description: 상품의 사이즈를 입력해주세요.
  *       "4000":
  *         description: 데이터 베이스 에러
  */
@@ -165,18 +149,8 @@ itemRouter.get("/filter", itemController.retrieveItemsByFilter);
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
- *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
+ *       "2017":
+ *         description: 상품의 인덱스를 입력해주세요.
  *       "4000":
  *         description: 데이터 베이스 에러
  *
@@ -235,18 +209,20 @@ itemRouter.get("/filter", itemController.retrieveItemsByFilter);
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
- *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
+ *       "2011":
+ *         description: 상품의 이름을 입력해주세요.
+ *       "2012":
+ *         description: 상품의 상세설명을 입력해주세요.
+ *       "2013":
+ *         description: 상품의 브랜드를 입력해주세요.
+ *       "2014":
+ *         description: 상품의 가격을 입력해주세요.
+ *       "2015":
+ *         description: 상품의 사이즈를 입력해주세요.
+ *       "2016":
+ *         description: 상품의 크기를 입력해주세요.
+ *       "2017":
+ *         description: 상품의 인덱스를 입력해주세요.
  *       "4000":
  *         description: 데이터 베이스 에러
  *
@@ -275,18 +251,8 @@ itemRouter.get("/:id", itemController.retrieveItemDetail).patch("/:id", itemCont
  *     responses:
  *       "1000":
  *         description: API 성공
- *       "2001":
- *         description: id를 입력해주세요.
- *       "2002":
- *         description: id를 30자 미만으로 입력해주세요.
- *       "2004":
- *         description: 비밀번호를 입력 해주세요.
- *       "2005":
- *         description: 비밀번호는 20자리 미만으로 입력해주세요.
- *       "2008":
- *         description: user 이름을 입력해주세요
- *       "3000":
- *         description: 이미 존재하는 id입니다.
+ *       "2017":
+ *         description: 상품의 인덱스를 입력해주세요.
  *       "4000":
  *         description: 데이터 베이스 에러
  *
