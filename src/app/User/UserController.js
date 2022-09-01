@@ -1,31 +1,22 @@
 const baseResponse = require("../../../config/baseResponseStatus");
 const { response, errResponse } = require("../../../config/response");
 const userProvider = require("./UserProvider");
+const userService = require("./UserService");
 
 /**
- * API No. 0.1
- * API Name : GET 테스트 API
- * [GET] /test
+ * API No. 1.1
+ * API Name : user 회원가입 API
+ * [POST] /app/user
  */
 
-export const getTest = (req, res) => {
-  return res.send(response(baseResponse.SUCCESS));
-};
-/**
- * API No. 0.2
- * API Name : POST 테스트 API
- * [POST] /test
- */
-export const postTest = (req, res) => {
-  return res.send(response(baseResponse.SUCCESS));
-};
+export const postSignIn = async (req, res) => {
+  const { id, pw, name } = req.body;
+  if (!id) return res.send(errResponse(baseResponse.SIGNUP_ID_EMPTY));
+  if (!pw) return res.send(errResponse(baseResponse.SIGNUP_PW_EMPTY));
+  if (!name) return res.send(errResponse(baseResponse.SIGNUP_NAME_EMPTY));
 
-/**
- * API No. 0.3
- * API Name : db 테스트 API
- * [GET] /test/db
- */
-export const getDatabaseTest = async (req, res) => {
-  const testUserResult = await userProvider.retrieveUserList();
-  return res.send(testUserResult);
+  //길이 validation
+
+  const createUserResult = await userService.createUser(id, pw, name);
+  return res.send(createUserResult);
 };
