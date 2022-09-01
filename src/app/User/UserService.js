@@ -24,7 +24,6 @@ export const createUser = async (id, pw, name) => {
 
     return response(baseResponse.SUCCESS, createUserResult[0].insertId);
   } catch (err) {
-    await connection.rollback();
     logger.error(`App - createUser Service error: ${err.message}`);
     return errResponse(baseResponse.DB_ERROR);
   } finally {

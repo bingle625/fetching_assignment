@@ -2,20 +2,31 @@ const { pool } = require("../../../config/database");
 const baseResponseStatus = require("../../../config/baseResponseStatus");
 const { response, errResponse } = require("../../../config/response");
 const { logger } = require("../../../config/winston");
+const itemDao = require("./ItemDao").default;
 
-const testDao = require("./ItemDao");
-
-exports.retrieveUserList = async function () {
+export const retrieveItemList = async () => {
   const connection = await pool.getConnection(async (conn) => conn);
-  const handleError = (error) => logger.error(`❌DB Error: ${error.message}`);
 
   try {
-    const testResult = await testDao.selectUserPosts(connection);
-    connection.release();
-    return response(baseResponseStatus.SUCCESS, testResult);
+    const retrieveItemRows = await itemDao.selectItems(connection);
+    return response(baseResponseStatus.SUCCESS, retrieveItemRows);
   } catch (error) {
-    handleError(error);
-    connection.release();
+    logger.error(`❌ retrieveItemList Provider Error: ${error.message}`);
     return errResponse(baseResponseStatus.FAILURE);
+  } finally {
+    connection.release();
+  }
+};
+
+export const retrieveItemDetail = async (itemIdx) => {
+  const connection = await pool.getConnection(async (conn) => conn);
+  try {
+    const retrieveItemDetail = await itemDao.selectItem(connection, itemIdx);
+    return response(baseResponseStatus.SUCCESS, retrieveItemDetail);
+  } catch (error) {
+    logger.error(`❌ retrieveItemDetail Provider Error: ${error.message}`);
+    return errResponse(baseResponseStatus.FAILURE);
+  } finally {
+    connection.release();
   }
 };
