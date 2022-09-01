@@ -55,4 +55,43 @@ const userRouter = express.Router();
  *
  */
 userRouter.post("/", userController.postSignIn);
+
+/**
+ * @swagger
+ * paths:
+ *   /app/user/itemLike?userIdx={userIdx}&itemIdx={itemIdx}:
+ *    post:
+ *     tags: [회원 도메인 api]
+ *     summary: 회원의 상품 좋아요 api
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: userIdx
+ *         schema:
+ *          type: integer
+ *         description: 사용자 인덱스
+ *         default: 1
+ *       - in: query
+ *         name: itemIdx
+ *         schema:
+ *          type: integer
+ *         description: 상품 인덱스
+ *         default: 1
+ *
+ *     responses:
+ *       "1000":
+ *         description: API 성공
+ *       "2017":
+ *         description: 상품의 인덱스를 입력해주세요.
+ *       "2018":
+ *         description: 사용자의 인덱스를 입력해주세요.
+ *       "4000":
+ *         description: 데이터 베이스 에러
+ *
+ *
+ */
+
+userRouter.post("/itemLike", userController.itemLike);
+
 export default userRouter;

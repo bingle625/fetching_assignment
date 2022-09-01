@@ -30,3 +30,24 @@ export const createUser = async (id, pw, name) => {
     connection.release();
   }
 };
+
+export const insertItemLike = async (userIdx, itemIdx) => {
+  const connection = await pool.getConnection(async (conn) => conn);
+  try {
+    const liekInfo = [userIdx, itemIdx];
+    //jwt 토큰과 일치하는 지 확인
+
+    //유저 상태 확인
+    //상품 상태 확인
+    //상품 좋아요 이미 존재하는 지 확인
+
+    const createLikeResult = await userDao.insertLikeInfo(connection, liekInfo);
+
+    return response(baseResponse.SUCCESS, createLikeResult[0].insertId);
+  } catch (err) {
+    logger.error(`App - insertItemLike Service error: ${err.message}`);
+    return errResponse(baseResponse.DB_ERROR);
+  } finally {
+    connection.release();
+  }
+};

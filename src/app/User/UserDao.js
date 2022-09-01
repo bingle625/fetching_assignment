@@ -9,4 +9,14 @@ const insertUserInfo = async (connection, insertUserInfoParams) => {
   return insertUserInfoRow;
 };
 
-module.exports = { insertUserInfo };
+const insertLikeInfo = async (connection, insertLikeInfoParams) => {
+  const insertLikeQuery = `
+  INSERT INTO ItemLike(userIdx, itemIdx)
+  VALUES (?, ?);
+  `;
+
+  const insertUserInfoRow = await connection.query(insertLikeQuery, insertLikeInfoParams);
+  return insertUserInfoRow;
+};
+
+module.exports = { insertUserInfo, insertLikeInfo };

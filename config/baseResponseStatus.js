@@ -20,11 +20,15 @@ module.exports = {
   ITEM_SIZE_EMPTY: { isSuccess: false, code: 2015, message: "상품의 사이즈를 입력해주세요." },
   ITEM_COLOR_EMPTY: { isSuccess: false, code: 2016, message: "상품의 색상을 입력해주세요." },
   ITEM_INDEX_EMPTY: { isSuccess: false, code: 2017, message: "상품의 인덱스를 입력해주세요." },
+  USER_INDEX_EMPTY: { isSuccess: false, code: 2018, message: "사용자의 인덱스를 입력해주세요." },
 
   // Response Error
   SIGNUP_REDUNDANT_ID: { isSuccess: false, code: 3000, message: "중복된 id입니다." },
   SIGNIN_ID_WRONG: { isSuccess: false, code: 3001, message: "틀린 id입니다." },
   SIGNIN_PW_WRONG: { isSuccess: false, code: 3002, message: "틀린 비밀번호입니다." },
   USER_STATUS_INACTIVE: { isSuccess: false, code: 3003, message: "비활성화된 user입니다." },
-  USER_STATUS_DELETED: { isSuccess: false, code: 3004, message: "삭제된 user입니다." }
+  USER_STATUS_DELETED: { isSuccess: false, code: 3004, message: "삭제된 user입니다." },
+
+  //DB 에러
+  DB_ERROR: { isSuccess: false, code: 4000, message: "데이터 베이스 에러" }
 };
