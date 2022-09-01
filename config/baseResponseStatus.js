@@ -28,6 +28,9 @@ module.exports = {
   SIGNIN_PW_WRONG: { isSuccess: false, code: 3002, message: "틀린 비밀번호입니다." },
   USER_STATUS_INACTIVE: { isSuccess: false, code: 3003, message: "비활성화된 user입니다." },
   USER_STATUS_DELETED: { isSuccess: false, code: 3004, message: "삭제된 user입니다." },
+  ITEM_STATUS_DELETED: { isSuccess: false, code: 3005, message: "비활성화된 상품입니다." },
+  ITEM_STATUS_INACTIVE: { isSuccess: false, code: 3006, message: "삭제된 상품입니다." },
+  ITEM_LIKE_ALEADY_EXIST: { isSuccess: false, code: 3007, message: "이미 존재하는 좋아요입니다." },
 
   //DB 에러
   DB_ERROR: { isSuccess: false, code: 4000, message: "데이터 베이스 에러" }
