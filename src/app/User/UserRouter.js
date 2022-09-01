@@ -48,7 +48,7 @@ const userRouter = express.Router();
  *         description: 비밀번호는 20자리 미만으로 입력해주세요.
  *       "2008":
  *         description: user 이름을 입력해주세요
- *       "3001":
+ *       "3000":
  *         description: 이미 존재하는 id입니다.
  *       "4000":
  *         description: 데이터 베이스 에러

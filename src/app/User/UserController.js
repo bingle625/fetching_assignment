@@ -10,7 +10,6 @@ const userService = require("./UserService");
  */
 
 export const postSignIn = async (req, res) => {
-  console.log(req.body);
   const { id, pw, name } = req.body;
   if (!id) return res.send(errResponse(baseResponse.SIGNUP_ID_EMPTY));
   if (!pw) return res.send(errResponse(baseResponse.SIGNUP_PW_EMPTY));
