@@ -10,6 +10,7 @@ const itemServcie = require("./ItemService");
  */
 
 export const createItem = async (req, res) => {
+  console.log("1");
   /*
     body: 
       - name
@@ -39,6 +40,8 @@ export const createItem = async (req, res) => {
  * [GET] app/item
  */
 export const retrieveItems = async (req, res) => {
+  console.log("2");
+
   const retrieveItemsResult = await itemProvider.retrieveItemList();
   return res.send(retrieveItemsResult);
 };
@@ -49,6 +52,8 @@ export const retrieveItems = async (req, res) => {
  * [GET] app/item/:id
  */
 export const retrieveItemDetail = async (req, res) => {
+  console.log("3");
+
   const itemIdx = req.params.id;
   const retrieveItemDetailResult = await itemProvider.retrieveItemDetail(itemIdx);
   return res.send(retrieveItemDetailResult);
@@ -60,6 +65,8 @@ export const retrieveItemDetail = async (req, res) => {
  * [PATCH] app/item/:id
  */
 export const patchItem = async (req, res) => {
+  console.log("4");
+
   const itemIdx = req.params.id;
   const { name, description, brand, price, size, color } = req.body;
   if (!name) return res.send(errResponse(baseResponse.FAILURE));
@@ -78,7 +85,26 @@ export const patchItem = async (req, res) => {
  * [PATCH] app/item/status/:id
  */
 export const deleteItem = async (req, res) => {
+  console.log("5");
+
   const itemIdx = req.params.id;
   const deleteItemResult = await itemServcie.deleteItem(itemIdx);
   return res.send(deleteItemResult);
+};
+
+/**
+ * API No. 3.6
+ * API Name : 상품 필터 api
+ * [PATCH] app/item/filter?itemIdx={itemIdx}&color={color}&brand={brand}&size={size}
+ */
+
+export const retrieveItemsByFilter = async (req, res) => {
+  console.log("HIHIHIHIHIHIHI");
+  const color = req.query.color;
+  const brand = req.query.brand;
+  const size = req.query.size;
+  console.log(color, brand, size);
+
+  const retrieveItemsResult = await itemProvider.retrieveItemsByFilter(color, brand, size);
+  return res.send(retrieveItemsResult);
 };

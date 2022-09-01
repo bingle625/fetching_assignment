@@ -98,6 +98,55 @@ itemRouter.get("/", itemController.retrieveItems).post("/", itemController.creat
 /**
  * @swagger
  * paths:
+ *  /app/item/filter?&color={color}&brand={brand}&size={size}:
+ *
+ *   get:
+ *     tags: [상품 도메인 api]
+ *     summary: 상품 필터링 조회 api
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: color
+ *         schema:
+ *          type: string
+ *         description: 조회 색상
+ *         default: blue
+ *       - in: query
+ *         name: brand
+ *         schema:
+ *          type: string
+ *         description: 조회 브랜드
+ *         default: ACNE STUDIOS
+ *       - in: query
+ *         name: size
+ *         schema:
+ *          type: string
+ *         description: 조회 사이즈
+ *         default: L
+ *     responses:
+ *       "1000":
+ *         description: API 성공
+ *       "2001":
+ *         description: id를 입력해주세요.
+ *       "2002":
+ *         description: id를 30자 미만으로 입력해주세요.
+ *       "2004":
+ *         description: 비밀번호를 입력 해주세요.
+ *       "2005":
+ *         description: 비밀번호는 20자리 미만으로 입력해주세요.
+ *       "2008":
+ *         description: user 이름을 입력해주세요
+ *       "3000":
+ *         description: 이미 존재하는 id입니다.
+ *       "4000":
+ *         description: 데이터 베이스 에러
+ */
+itemRouter.get("/filter", itemController.retrieveItemsByFilter);
+
+/**
+ * @swagger
+ * paths:
  *  /app/item/{id}:
  *
  *   get:

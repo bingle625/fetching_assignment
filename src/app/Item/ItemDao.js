@@ -20,6 +20,7 @@ const insertItem = async (connection, insertItemInfoParams) => {
 };
 
 const selectItems = async (connection) => {
+  console.log(":hi");
   const selectItemsQuery = `
         SELECT itemIdx,name
         FROM Item
@@ -27,6 +28,18 @@ const selectItems = async (connection) => {
         ;
       `;
   const [itemResult] = await connection.query(selectItemsQuery);
+
+  return itemResult;
+};
+
+const selectItemsByFilter = async (connection, color, brand, size) => {
+  const selectItemsQuery = `
+        SELECT itemIdx,name
+        FROM Item
+        WHERE (STATUS = "ACTIVE" AND color=?) AND ( brand=? AND size=?)
+        ;
+      `;
+  const [itemResult] = await connection.query(selectItemsQuery, [color, brand, size]);
 
   return itemResult;
 };
@@ -69,4 +82,4 @@ const deleteItem = async (connection, itemInfo) => {
   return itemResult;
 };
 
-export default { selectUserPosts, insertItem, selectItems, selectItem, editItem, deleteItem };
+export default { selectUserPosts, insertItem, selectItems, selectItem, editItem, deleteItem, selectItemsByFilter };
