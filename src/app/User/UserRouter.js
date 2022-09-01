@@ -12,28 +12,28 @@ const userRouter = express.Router();
  *     consumes:
  *       - application/json
  *     parameters:
- *       - in: body
- *         name: userInfo
- *         description: admin 회원가입 정보 파라미터
- *         schema:
- *            type: object
- *            required:
- *              - id
- *              - pw
- *              - name
- *            properties:
- *                  id:
- *                        default: gks1354
- *                        description: user 로그인 identification
- *                        type: string
- *                  pw:
- *                        default: test12345678
- *                        description: user 비밀번호
- *                        type: string
- *                  name:
- *                        default: 한성재
- *                        description: user 이름
- *                        type: string
+ *      - in: body
+ *        name: userInfo
+ *        description: user 회원가입 정보  파라미터
+ *        schema:
+ *           type: object
+ *           required:
+ *             - id
+ *             - pw
+ *             - name
+ *           properties:
+ *                 id:
+ *                       default: test1234
+ *                       description: user 회원가입 id
+ *                       type: string
+ *                 pw:
+ *                       default: gks12345678
+ *                       description: user 회원 가입 비밀번호
+ *                       type: string
+ *                 name:
+ *                       default: 한성재
+ *                       description: user 회원 가입 이름
+ *                       type: string
  *
  *     responses:
  *       "1000":

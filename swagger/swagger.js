@@ -3,7 +3,6 @@ const swaggereJsdoc = require("swagger-jsdoc");
 import "dotenv/config";
 
 const swaggerDefinition = {
-  openapi: "3.0.0",
   info: {
     version: "1.0.0",
     title: "빙글의 node.js 템플릿",
