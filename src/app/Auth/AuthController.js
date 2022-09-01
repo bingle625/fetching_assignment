@@ -1,31 +1,38 @@
 const baseResponse = require("../../../config/baseResponseStatus");
 const { response, errResponse } = require("../../../config/response");
-const authProvider = require("./AuthProvider");
+const authProvider = require("./authProvider");
+const authService = require("./authService");
 
 /**
  * API No. 0.1
- * API Name : GET 테스트 API
- * [GET] /test
+ * API Name : user 로그인 api
+ * [POST] /app/aut/user
  */
 
-export const getTest = (req, res) => {
-  return res.send(response(baseResponse.SUCCESS));
-};
-/**
- * API No. 0.2
- * API Name : POST 테스트 API
- * [POST] /test
- */
-export const postTest = (req, res) => {
-  return res.send(response(baseResponse.SUCCESS));
-};
+export const postLogin = async (req, res) => {
+  /*
+    body: id, password
+  */
+  const { id, pw } = req.body;
 
-/**
- * API No. 0.3
- * API Name : db 테스트 API
- * [GET] /test/db
- */
-export const getDatabaseTest = async (req, res) => {
-  const testUserResult = await authProvider.retrieveUserList();
-  return res.send(testUserResult);
+  console.log(req.body);
+  //id validation
+  if (!id) {
+    return res.send(errResponse(baseResponse.FAILURE));
+  } else if (id.length > 255) {
+    return res.send(errResponse(baseResponse.FAILURE));
+  }
+
+  //pw validation
+  if (!pw) {
+    return res.send(errResponse(baseResponse.FAILURE));
+  } else if (pw.length > 30) {
+    return res.send(errResponse(baseResponse.FAILURE));
+  }
+  // } else if (!regexPwd.test(pw)) {
+  //   return res.send(errResponse(baseResponse.SIGNIN_PASSWORD_WRONG));
+  // }
+
+  const signInResponse = await authService.postSignIn(id, pw);
+  return res.send(signInResponse);
 };
